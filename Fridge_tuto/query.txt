@@ -1,0 +1,35 @@
+
+===== URL do H2 database =====
+
+	http://localhost:8080/h2-console/
+
+
+===== Exemplo de insert =====
+
+	INSERT INTO food_table (name, expiration_date, quantity) 
+	VALUES ('Apple', '2025-12-31', 10);
+
+
+===== Arquivo de configuração do banco de dados =====
+
+# .../Springboot/lab-springboot/Fridge/src/main/resources/application.yml
+
+	spring:
+	  datasource:
+	    url: jdbc:h2:mem:testdb
+	    driver-class-name: org.h2.Driver
+	    username: fiasco
+	    password:
+	  h2:
+	    console:
+	      enabled: true
+	      path: /h2-console
+	      settings:
+		web-allow-others: false
+	  jpa:
+	    database-platform: org.hibernate.dialect.H2Dialect
+	    hibernate:
+	      ddl-auto: create-drop  # Mude para criar tabelas automaticamente
+	    show-sql: true
+	  flyway:
+	    enabled: false  # Desative temporariamente para testes
